@@ -83,7 +83,11 @@ const routes = [{
     {
         path: '/demo6',
         name: 'demo6',
-        component: Demo6
+        component: Demo6,
+        beforeEach(to, form, next) {
+            console.log('beforeEach:即将进入demo6')
+            next()
+        }
     },
     {
         path: '/demo7',
@@ -140,15 +144,20 @@ const routes = [{
         component: Demo16
     },
     {
-        path: '/demo17/:id(\\d+)/:type?',
+        path: '/demo17/:id(\\d+)?/:type?',
         // path: '/demo17',
         meta: {
             title: "这是demo17"
         },
         name: 'demo17',
         component: Demo17,
+        beforeEach(to, form, next) {
+            console.log('beforeEach:即将进入demo17')
+            next()
+        },
         children: [{
-            path: 'detail',
+            //这里的:*表示可以写detail,也可以不写
+            path: ':detail',
             name: 'detail',
             component: Detail
         }]
@@ -162,9 +171,42 @@ const routes = [{
 
 
 
-export default new Router({
+const router = new Router({
     //使用什么方式切换路由
     mode: 'history', //html5 API的history
-    base: process.env.BASE_URL,
+    // base: process.env.BASE_URL,
+    base: "/",
     routes
 })
+
+//全局的路由钩子函数 
+//路由跳转前的钩子函数
+router.beforeEach((to, from, next) => {
+    //to 目标路由
+    //from 前一个路由
+    //next 必须执行next方法,才能跳转路由
+    //执行next(). 就会跳转到to对应的路由
+    //执行next(false).不跳转 停留在当前页面
+    //执行next(xxx),跳转到xxx页面
+    // $ { //to and from are Route Object,next() must be called to resolve the hook}
+
+    // }
+    console.log('beforeEach:即将进入了' + to.fullPath + '页面')
+    next()
+        //     if (to.name === 'demo6') {
+        //         next('demo5');
+        //     } else {
+        //         next();
+        //     }
+});
+//路由跳转后的钩子函数 
+router.afterEach((to, from) => {
+
+    //     ${//these hooks do not get a next function and cannot affect the navigation}
+
+    // }
+    console.log("哈哈")
+    console.log('afterEach:进入了' + to.path + '页面')
+});
+
+export default router;
