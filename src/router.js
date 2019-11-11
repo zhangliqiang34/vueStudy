@@ -45,122 +45,126 @@ const NotFound = () =>
 
 Vue.use(Router)
 
+const routes = [{
+        path: '/',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: About
+    },
+    {
+        path: '/demo1',
+        name: 'demo1',
+        component: Demo1
+    },
+    {
+        path: '/demo2',
+        name: 'demo2',
+        component: Demo2
+    },
+    {
+        path: '/demo3',
+        name: 'demo3',
+        component: Demo3
+    },
+    {
+        path: '/demo4',
+        name: 'demo4',
+        component: Demo4
+    },
+    {
+        path: '/demo5',
+        name: 'demo5',
+        component: Demo5
+    },
+    {
+        path: '/demo6',
+        name: 'demo6',
+        component: Demo6
+    },
+    {
+        path: '/demo7',
+        name: 'demo7',
+        component: Demo7,
+        //重定向
+        // redirect: 'demo6'
+        //别名 所以同时可以访问demo7和demo7777
+        alias: "demo7777"
+    },
+    {
+        path: '/demo8',
+        name: 'demo8',
+        component: Demo8
+    },
+    {
+        path: '/demo9',
+        name: 'demo9',
+        component: Demo9
+    },
+    {
+        path: '/demo10',
+        name: 'demo10',
+        component: Demo10
+    },
+    {
+        path: '/demo11',
+        name: 'demo11',
+        component: Demo11
+    },
+    {
+        path: '/demo12',
+        name: 'demo12',
+        component: Demo12
+    },
+    {
+        path: '/demo13',
+        name: 'demo13',
+        component: Demo13
+    },
+    {
+        path: '/demo14',
+        name: 'demo14',
+        component: Demo14
+    },
+    {
+        path: '/demo15',
+        name: 'demo15',
+        component: Demo15
+    },
+    {
+        path: '/demo16',
+        name: 'demo16',
+        component: Demo16
+    },
+    {
+        path: '/demo17/:id(\\d+)/:type?',
+        // path: '/demo17',
+        meta: {
+            title: "这是demo17"
+        },
+        name: 'demo17',
+        component: Demo17,
+        children: [{
+            path: 'detail',
+            name: 'detail',
+            component: Detail
+        }]
+    },
+    {
+        path: '*',
+        name: 'NotFound',
+        component: NotFound
+    }
+];
+
+
+
 export default new Router({
     //使用什么方式切换路由
     mode: 'history', //html5 API的history
     base: process.env.BASE_URL,
-    routes: [{
-            path: '/',
-            name: 'home',
-            component: Home
-        },
-        {
-            path: '/about',
-            name: 'about',
-            component: About
-        },
-        {
-            path: '/demo1',
-            name: 'demo1',
-            component: Demo1
-        },
-        {
-            path: '/demo2',
-            name: 'demo2',
-            component: Demo2
-        },
-        {
-            path: '/demo3',
-            name: 'demo3',
-            component: Demo3
-        },
-        {
-            path: '/demo4',
-            name: 'demo4',
-            component: Demo4
-        },
-        {
-            path: '/demo5',
-            name: 'demo5',
-            component: Demo5
-        },
-        {
-            path: '/demo6',
-            name: 'demo6',
-            component: Demo6
-        },
-        {
-            path: '/demo7',
-            name: 'demo7',
-            component: Demo7,
-            //重定向
-            // redirect: 'demo6'
-            //别名 所以同时可以访问demo7和demo7777
-            alias: "demo7777"
-        },
-        {
-            path: '/demo8',
-            name: 'demo8',
-            component: Demo8
-        },
-        {
-            path: '/demo9',
-            name: 'demo9',
-            component: Demo9
-        },
-        {
-            path: '/demo10',
-            name: 'demo10',
-            component: Demo10
-        },
-        {
-            path: '/demo11',
-            name: 'demo11',
-            component: Demo11
-        },
-        {
-            path: '/demo12',
-            name: 'demo12',
-            component: Demo12
-        },
-        {
-            path: '/demo13',
-            name: 'demo13',
-            component: Demo13
-        },
-        {
-            path: '/demo14',
-            name: 'demo14',
-            component: Demo14
-        },
-        {
-            path: '/demo15',
-            name: 'demo15',
-            component: Demo15
-        },
-        {
-            path: '/demo16',
-            name: 'demo16',
-            component: Demo16
-        },
-        {
-            path: '/demo17/:id(\\d+)/:type?',
-            // path: '/demo17',
-            meta: {
-                title: "这是demo17"
-            },
-            name: 'demo17',
-            component: Demo17,
-            children: [{
-                path: 'detail',
-                name: 'detail',
-                component: Detail
-            }]
-        },
-        {
-            path: '*',
-            name: 'NotFound',
-            component: NotFound
-        }
-    ]
+    routes
 })
