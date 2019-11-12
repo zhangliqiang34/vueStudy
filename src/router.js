@@ -40,6 +40,8 @@ const Demo17 = () =>
     import ('./views/Demo17.vue')
 const Demo18 = () =>
     import ('./views/Demo18.vue')
+const Demo19 = () =>
+    import ('./views/Demo19.vue')
 const Detail = () =>
     import ('./views/Detail.vue')
 const NotFound = () =>
@@ -173,6 +175,11 @@ const routes = [{
         path: '/demo18',
         name: 'demo18',
         component: Demo18
+    },
+    {
+        path: '/demo19',
+        name: 'demo19',
+        component: Demo19
     },
 ];
 
