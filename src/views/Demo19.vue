@@ -12,16 +12,32 @@
     <ul>
       <li v-for="item in filterList1" :key="item.id">{{item.name}} - {{item.sexName}}</li>
     </ul>
+    <hr />
+    <ul>
+      <li v-for="item in filterList" :key="item.id">{{item.name}} - {{item.sexName}}</li>
+    </ul>
+    <hr />
+    <ul>
+      <li v-for="item in filterList2" :key="item.id">{{item.name}} - {{item.sexName}}</li>
+    </ul>
+
+    <hr />
+    <button @click="getData(3)">获取3条数据</button>
+    <button @click="getData2(5)">获取5条数据</button>
+    <button @click="getList(10)">获取10条数据</button>
   </div>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   name: "demo19",
   data() {
     return {
-      msg: "Yes"
+      // msg: "Yes"
     };
+  },
+  created() {
+    this.$store.dispatch("getList");
   },
   computed: {
     count1() {
@@ -33,7 +49,11 @@ export default {
     ...mapState(["count"]),
     filterList1() {
       return this.$store.getters.filterList;
-    }
+    },
+    ...mapGetters({
+      filterList2: "filterList"
+    }),
+    ...mapGetters(["filterList"])
   },
   methods: {
     add(val) {
@@ -42,7 +62,16 @@ export default {
     ...mapMutations({
       add2: "increment"
     }),
-    ...mapMutations(["increment"])
+    ...mapMutations(["increment"]),
+    getData(val) {
+      this.$store.dispatch("getList", val).then(() => {
+        this.add2(5);
+      });
+    },
+    ...mapActions({
+      getData2: "getList"
+    }),
+    ...mapActions(["getList"])
   }
 };
 </script>

@@ -42,14 +42,13 @@ export default new Vuex.Store({
     actions: {
         getList({ commit }, payload) {
             setTimeout(() => {
-                const list = Mock.mock({
-                    data: [{
+                const { data: list } = Mock.mock({
+                    [`data|${payload ? payload :'3-10'}`]: [{
                         'id|+1': 1,
                         'name': "@cname()",
                         'sex|1': [1, 0]
                     }]
                 })
-
                 commit('updateList', list)
             }, 1000);
 
