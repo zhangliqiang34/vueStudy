@@ -4,6 +4,7 @@
     <p>{{count}}</p>
     <p>{{count1}}</p>
     <p>{{count2}}</p>
+    <p>{{rootCount}}</p>
     <hr />
     <button @click="add(1)">+1</button>
     <button @click="add(2)">+2</button>
@@ -37,41 +38,42 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("getList");
+    this.$store.dispatch("moduleB/getList");
   },
   computed: {
+    ...mapState(["rootCount"]),
     count1() {
-      return this.$store.state.count;
+      return this.$store.state.moduleA.count;
     },
-    ...mapState({
+    ...mapState("moduleA", {
       count2: state => state.count
     }),
-    ...mapState(["count"]),
+    ...mapState("moduleA", ["count"]),
     filterList1() {
-      return this.$store.getters.filterList;
+      return this.$store.getters["moduleB/filterList"];
     },
-    ...mapGetters({
+    ...mapGetters("moduleB", {
       filterList2: "filterList"
     }),
-    ...mapGetters(["filterList"])
+    ...mapGetters("moduleB", ["filterList"])
   },
   methods: {
     add(val) {
-      this.$store.commit("increment", val);
+      this.$store.commit("moduleA/increment", val);
     },
-    ...mapMutations({
+    ...mapMutations("moduleA", {
       add2: "increment"
     }),
-    ...mapMutations(["increment"]),
+    ...mapMutations("moduleA", ["increment"]),
     getData(val) {
-      this.$store.dispatch("getList", val).then(() => {
+      this.$store.dispatch("moduleB/getList", val).then(() => {
         this.add2(5);
       });
     },
-    ...mapActions({
+    ...mapActions("moduleB", {
       getData2: "getList"
     }),
-    ...mapActions(["getList"])
+    ...mapActions("moduleB", ["getList"])
   }
 };
 </script>
