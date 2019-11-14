@@ -7,8 +7,8 @@
     <p>{{rootCount}}</p>
     <hr />
     <button @click="add(1)">+1</button>
-    <button @click="add(2)">+2</button>
-    <button @click="add(10)">+10</button>
+    <button @click="add2(2)">+2</button>
+    <button @click="add3(10)">+10</button>
     <hr />
     <ul>
       <li v-for="item in filterList1" :key="item.id">{{item.name}} - {{item.sexName}}</li>
@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+import { increment, updateList } from "../store/mutations-type";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   name: "demo19",
@@ -59,12 +60,15 @@ export default {
   },
   methods: {
     add(val) {
-      this.$store.commit("moduleA/increment", val);
+      this.$store.commit("moduleA/" + increment, val);
     },
     ...mapMutations("moduleA", {
-      add2: "increment"
+      add2: increment
     }),
-    ...mapMutations("moduleA", ["increment"]),
+    ...mapMutations("moduleA", [increment]),
+    add3(val) {
+      this[increment](val);
+    },
     getData(val) {
       this.$store.dispatch("moduleB/getList", val).then(() => {
         this.add2(5);

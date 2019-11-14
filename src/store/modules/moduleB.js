@@ -1,4 +1,5 @@
 import Mock from "mockjs";
+import { updateList, increment } from "../mutations-type";
 
 export default {
     namespaced: true,
@@ -14,24 +15,26 @@ export default {
         }
     },
     mutations: {
-        updateList(state, payload) {
+        [updateList](state, payload) {
             state.list = payload;
         }
     },
     actions: {
         getList({ commit }, payload) {
-            setTimeout(() => {
-                const { data: list } = Mock.mock({
-                    [`data|${payload ? payload : '3-10'}`]: [{
-                        'id|+1': 1,
-                        'name': "@cname()",
-                        'sex|1': [1, 0]
-                    }]
-                })
-                commit('updateList', list)
-                commit('increment', 4, { root: true })
-            }, 1000);
-
+            return new Promise(rs => {
+                setTimeout(() => {
+                    const { data: list } = Mock.mock({
+                        [`data|${payload ? payload : "3-10"}`]: [{
+                            "id|+1": 1,
+                            name: "@cname()",
+                            "sex|1": [1, 0]
+                        }]
+                    });
+                    commit(updateList, list);
+                    commit(increment, 4, { root: true });
+                    rs();
+                }, 1000);
+            });
         }
     }
-}
+};
