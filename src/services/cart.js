@@ -7,3 +7,11 @@ export const getProductsList = (params) => {
         params
     })
 }
+
+export const pay = (params) => {
+    return ajaxFun({
+        method: 'post',
+        url: 'api/pay',
+        params
+    })
+}

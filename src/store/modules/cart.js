@@ -1,5 +1,5 @@
-import { UPDATE_CART, UPDATE_SKU, UPDATE_CART_NUMS } from '../mutations-type'
-
+import { UPDATE_CART, UPDATE_SKU, UPDATE_CART_NUMS, DELETE_PRODUCT, CLEAR_CART } from '../mutations-type'
+import { pay } from '../../services/cart'
 export default {
     namespaced: true,
     state: {
@@ -27,6 +27,12 @@ export default {
         },
         [UPDATE_CART_NUMS](state, { id, nums }) {
             state.products.find(item => item.id === id).nums = nums
+        },
+        [DELETE_PRODUCT](state, product) {
+            state.products = state.products.filter(item => item.id !== product.id)
+        },
+        [CLEAR_CART](state, product) {
+            state.products = []
         }
     },
     actions: {
@@ -54,6 +60,34 @@ export default {
                     sku: product.max - val
                 }, { root: true })
             }
+        },
+        deleteProduct({ commit }, product) {
+            commit(DELETE_PRODUCT, product)
+
+            commit('products/' + UPDATE_SKU, {
+                id: product.id,
+                sku: product.max
+            }, { root: true })
+        },
+        async pay({ commit, state }, payload) {
+            const ids = state.products.map(item => item.id)
+            const { data } = await pay(ids)
+
+            if (data) {
+                alert("结算成功")
+
+                state.products.forEach(product => {
+                    commit('products/' + UPDATE_SKU, {
+                        id: product.id,
+                        sku: product.max
+                    }, { root: true })
+                })
+
+                commit(CLEAR_CART)
+            } else {
+                alert("结算失败")
+            }
+            return Promise.resolve(data)
         }
     }
 }
