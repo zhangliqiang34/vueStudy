@@ -42,6 +42,8 @@ const Demo18 = () =>
     import ('./views/Demo18.vue')
 const Demo19 = () =>
     import ('./views/Demo19.vue')
+const Demo20 = () =>
+    import ('./views/Demo20.vue')
 const Detail = () =>
     import ('./views/Detail.vue')
 const NotFound = () =>
@@ -180,6 +182,11 @@ const routes = [{
         path: '/demo19',
         name: 'demo19',
         component: Demo19
+    },
+    {
+        path: '/demo20',
+        name: 'demo20',
+        component: Demo20
     },
 ];
 
