@@ -34,12 +34,18 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-
 export default {
   name: "shoppingCart",
+  // components: { Message },
   computed: {
     ...mapState("cart", ["products"]),
     ...mapGetters("cart", ["total"])
+  },
+  data() {
+    return {
+      // isShow: false,
+      // message: {}
+    };
   },
   filters: {
     float(val, num) {
@@ -61,10 +67,29 @@ export default {
     pay(product) {
       this.$store.dispatch("cart/pay").then(data => {
         if (data) {
-          alert("结算成功");
+          // this.isShow = true;
+          // this.message = {
+          //   type: "success",
+          //   message: "结算成功"
+          this.$message = {
+            type: "success",
+            message: "结算成功"
+          };
         } else {
-          alert("结算失败");
+          // this.isShow = true;
+          // this.message = {
+          //   type: "error",
+          //   message: "结算失败"
+          // };
+          this.$message = {
+            type: "error",
+            message: "结算失败"
+          };
         }
+
+        // setTimeout(() => {
+        //   this.isShow = false;
+        // }, 2000);
       });
     }
   }

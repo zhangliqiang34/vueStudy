@@ -1,14 +1,17 @@
 <template>
-    <div class="message" :style="styles">
-        <i class="iconfont" :class="icon"></i>
-        <div>{{message}}</div>
-    </div>
+  <div class="message" v-if="isShow" :style="styles">
+    <i class="iconfont" :class="icon"></i>
+    <div>{{message}}</div>
+  </div>
 </template>
 <script>
 export default {
-  props: ["type", "message"],
+  // props: ["type", "message"],
   data() {
     return {
+      isShow: false,
+      type: "",
+      message: "",
       types: {
         error: {
           icon: "icon-error",
@@ -47,6 +50,14 @@ export default {
       delete styles.icon;
       return styles;
     }
+  },
+  methods: {
+    show() {
+      this.isShow = true;
+    },
+    hide() {
+      this.isShow = false;
+    }
   }
 };
 </script>
@@ -57,5 +68,16 @@ export default {
 .message {
   padding: 8px 16px;
   line-height: 1.8;
+  font-size: 14px;
+  border-radius: 4px;
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  .iconfont {
+    margin-right: 10px;
+  }
 }
 </style>

@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "356912",
+      "name": "success",
+      "font_class": "success",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "1495284",
+      "name": "error",
+      "font_class": "error",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "6932374",
+      "name": "warn",
+      "font_class": "warn",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
+      "icon_id": "9358684",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e557",
+      "unicode_decimal": 58711
+    }
+  ]
+}
