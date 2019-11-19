@@ -39,17 +39,17 @@ import { mapState, mapGetters, mapActions } from "vuex";
 // import Message from "../components/messages";
 export default {
   name: "shoppingCart",
-  // components: { Message },
-  computed: {
-    ...mapState("cart", ["products"]),
-    ...mapGetters("cart", ["total"])
-  },
   data() {
     return {
       //   isShow: false,
       //   message: {}
     };
   },
+  computed: {
+    ...mapState("cart", ["products"]),
+    ...mapGetters("cart", ["total"])
+  },
+
   filters: {
     float(val, num) {
       return val.toFixed(num);
@@ -67,13 +67,14 @@ export default {
     deleteProdduct(product) {
       this.$store.dispatch("cart/deleteProduct", product);
     },
-    pay(product) {
+    pay() {
       this.$store.dispatch("cart/pay").then(data => {
         if (data) {
           // this.isShow = true;
           // this.message = {
           //   type: "success",
           //   message: "结算成功"
+
           // };
           // this.$message = {
           //   type: "success",

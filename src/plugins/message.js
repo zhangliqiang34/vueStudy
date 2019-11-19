@@ -1,5 +1,4 @@
-import Message from "./messages.vue";
-
+import Message from "./message.vue";
 export default {
     install(Vue) {
         const VueMsg = Vue.extend(Message);

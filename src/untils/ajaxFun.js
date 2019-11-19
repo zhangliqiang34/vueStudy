@@ -14,11 +14,12 @@ export default ({ method = 'get', url, params }) => {
             if (http.readyState === 4) {
                 if (http.readyState === 200) {
                     const data = JSON.parse(http.responseText)
-                    console.log(data)
+                    console.log(http.responseText)
                     rs(data)
+                    console.log("返回成功=======================")
                 } else {
                     const data = JSON.parse(http.responseText)
-                    console.log(data)
+                    console.log(http.responseText)
                     rs(data)
                     console.log("返回失败")
 

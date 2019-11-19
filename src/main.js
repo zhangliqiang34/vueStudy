@@ -9,6 +9,7 @@ import Message from "./plugins/message.js";
 import Toast from "./plugins/toast";
 Vue.use(Message);
 Vue.use(Toast); //启用新的提示组件
+
 Vue.config.productionTip = false;
 
 //引入付款成功的插件
