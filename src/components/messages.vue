@@ -1,15 +1,15 @@
 <template>
-  <div class="message" v-if="isShow" :style="styles">
+  <div class="message" :style="styles">
     <i class="iconfont" :class="icon"></i>
     <div>{{message}}</div>
   </div>
 </template>
 <script>
 export default {
-  // props: ["type", "message"],
+  props: ["type", "message"],
   data() {
     return {
-      isShow: false,
+      isShow: true,
       type: "",
       message: "",
       types: {
@@ -50,19 +50,19 @@ export default {
       delete styles.icon;
       return styles;
     }
-  },
-  methods: {
-    show() {
-      this.isShow = true;
-    },
-    hide() {
-      this.isShow = false;
-    }
   }
+  // methods: {
+  //   show() {
+  //     this.isShow = true;
+  //   },
+  //   hide() {
+  //     this.isShow = true;
+  //   }
+  // }
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "../assets/iconfont/iconfont.css";
 
 .message {

@@ -30,10 +30,13 @@
         <button class="btn-pay" :disabled="!products.length" @click="pay">结算</button>
       </p>
     </div>
+    <!-- <Message v-if="isShow" :type="message.type" :message="message.message" /> -->
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+
+// import Message from "../components/messages";
 export default {
   name: "shoppingCart",
   // components: { Message },
@@ -43,8 +46,8 @@ export default {
   },
   data() {
     return {
-      // isShow: false,
-      // message: {}
+      //   isShow: false,
+      //   message: {}
     };
   },
   filters: {
@@ -71,31 +74,36 @@ export default {
           // this.message = {
           //   type: "success",
           //   message: "结算成功"
-          this.$message = {
-            type: "success",
-            message: "结算成功"
-          };
+          // };
+          // this.$message = {
+          //   type: "success",
+          //   message: "结算成功"
+          // };
+          this.$myToast.success("这是提示信息");
+          this.$message.success("结算成功", "success");
         } else {
           // this.isShow = true;
           // this.message = {
           //   type: "error",
           //   message: "结算失败"
           // };
-          this.$message = {
-            type: "error",
-            message: "结算失败"
-          };
+          // this.$message = {
+          //   type: "error",
+          //   message: "结算失败"
+          // };
+          this.$myToast.success("这是提示信息");
+          this.$message.success("结算成功", "success");
         }
 
-        // setTimeout(() => {
-        //   this.isShow = false;
-        // }, 2000);
+        //   setTimeout(() => {
+        //     this.isShow = false;
+        //   }, 2000);
       });
     }
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less" scpoed>
 .list {
   text-align: left;
   list-style: circle;

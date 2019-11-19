@@ -4,14 +4,16 @@ import router from "./router";
 import Vuex from "vuex";
 // import store from "./store/store.js";
 import store from "./store/index.js";
-import Message from "./plugins/message.js"
+import Message from "./plugins/message.js";
+//自定义提示框
+import Toast from "./plugins/toast";
+Vue.use(Message);
+Vue.use(Toast); //启用新的提示组件
 Vue.config.productionTip = false;
 
-
-
 //引入付款成功的插件
-Vue.use(Message)
-    //全局过滤器方法
+// Vue.use(Message);
+//全局过滤器方法
 Vue.filter("uppercase", value => {
     return value.toUpperCase();
 });
@@ -21,7 +23,6 @@ Vue.filter("uppercase", value => {
 //Vuex 通过 store 选项，提供了一种机制将状态从根组件“注入”到每一个
 //子组件中（需调用 Vue.use(Vuex)）：
 Vue.use(Vuex);
-
 
 new Vue({
     router,
