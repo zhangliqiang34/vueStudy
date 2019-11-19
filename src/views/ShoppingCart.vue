@@ -30,23 +30,25 @@
         <button class="btn-pay" :disabled="!products.length" @click="pay">结算</button>
       </p>
     </div>
+    <!-- <Message v-if="isShow" :type="messsage.type" :message="message.message" /> -->
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+
 export default {
   name: "shoppingCart",
-  // components: { Message },
+  data() {
+    return {
+      isShow: false,
+      message: {}
+    };
+  },
   computed: {
     ...mapState("cart", ["products"]),
     ...mapGetters("cart", ["total"])
   },
-  data() {
-    return {
-      // isShow: false,
-      // message: {}
-    };
-  },
+
   filters: {
     float(val, num) {
       return val.toFixed(num);
@@ -64,9 +66,10 @@ export default {
     deleteProdduct(product) {
       this.$store.dispatch("cart/deleteProduct", product);
     },
-    pay(product) {
+    pay() {
       this.$store.dispatch("cart/pay").then(data => {
         if (data) {
+          console.log("结算成成");
           // this.isShow = true;
           // this.message = {
           //   type: "success",
@@ -75,6 +78,8 @@ export default {
             type: "success",
             message: "结算成功"
           };
+          console.log("结算成成2");
+          console.log(this.$message);
         } else {
           // this.isShow = true;
           // this.message = {

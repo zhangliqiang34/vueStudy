@@ -1,8 +1,9 @@
 <template>
-  <div class="message" v-if="isShow" :style="styles">
-    <i class="iconfont" :class="icon"></i>
-    <div>{{message}}</div>
-  </div>
+    <div class="message" v-if="isShow" :style="styles">
+      <i class="iconfont" :class="icon"></i>
+      <div>{{message}}</div>
+    </div>
+
 </template>
 <script>
 export default {
@@ -54,6 +55,7 @@ export default {
   methods: {
     show() {
       this.isShow = true;
+      console.log(this.$message);
     },
     hide() {
       this.isShow = false;

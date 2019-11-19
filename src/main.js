@@ -4,7 +4,7 @@ import router from "./router";
 import Vuex from "vuex";
 // import store from "./store/store.js";
 import store from "./store/index.js";
-import Message from "./plugins/message.js"
+import Message from "./plugins/message"
 Vue.config.productionTip = false;
 
 
