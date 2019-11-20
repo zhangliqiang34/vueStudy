@@ -93,7 +93,7 @@ export default {
           //   message: "结算失败"
           // };
           this.$myToast.success("这是提示信息");
-          this.$message.success("结算成功", "success");
+          this.$message.success("结算失败", "error");
         }
 
         //   setTimeout(() => {

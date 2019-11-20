@@ -1,8 +1,10 @@
 <template>
-  <div class="message" v-if="isShow" :style="styles">
-    <i class="iconfont" :class="icon"></i>
-    <div>{{message}}</div>
-  </div>
+  <transition name="slide">
+    <div class="message" v-if="isShow" :style="styles">
+      <i class="iconfont" :class="icon"></i>
+      <div>{{message}}</div>
+    </div>
+  </transition>
 </template>
 <script>
 export default {
@@ -79,5 +81,16 @@ export default {
   .iconfont {
     margin-right: 10px;
   }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 300ms;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }
 </style>
